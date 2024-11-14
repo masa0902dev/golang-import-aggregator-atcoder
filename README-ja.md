@@ -1,47 +1,41 @@
 # 🔥golang-import-aggregator
 
+## 目次
 
-> [日本語READMEはこちら](https://github.com/masa0902dev/golang-import-aggregator-atcoder/blob/main/README-ja.md)
-
-
-
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Demo](#demo)
-    - [Before Aggregation (3 Files)](#before-aggregation-3-files)
-    - [After Aggregation](#%EF%B8%8Fafter-aggregation)
-- [Prerequisites](#prerequisites)
-- [License](#license)
+- [できること](#できること)
+- [インストール](#インストール)
+- [使い方](#使い方)
+- [動作イメージ](#動作イメージ)
+	- [統合前 (３ファイル)](#統合前-３ファイル)
+	- [統合後](#%EF%B8%8F統合後)
+- [前提条件](#前提条件)
+- [ライセンス](#ライセンス)
 
 
 
-## Features
+## できること
 
-This tool consolidates custom packages imported in a main file into a single main file.  
-It is especially useful when using Golang for competitive programming, such as on platforms like AtCoder.
+Mainファイルにおいてimportされた自作パッケージ群を、Mainファイルにひとまとめにできます。  
+特にAtCoderなどの競技プログラミングでGolangを使用する場合に役立ちます。
 
-The result is output to the console, and you can choose to overwrite the specified main file.
+コンソールに結果が出力され、指定のMainファイルへ上書きするかを選択できます。
 
 
 
-## Installation
+## インストール
 ```bash
 go install github.com/masa0902dev/golang-import-aggregator-atcoder
 ```
 
+
 <br>
 
+## 🔥使い方
 
+importをMainファイルにひとまとめにするには以下のように使用します。  
+<b>ただし、importは記述されないので、自身のIDEのlintなどでimportを追記して下さい!</b>
 
-## 🔥Usage
-To consolidate imports into a main file, use the following command.  
-Note: Imports are not automatically added, so please use your IDE's linting tool to include them!
-
-[Example]
-
+[使用例]
 ```bash
 agg \
 -main test-dir/chap1/main.go \
@@ -49,19 +43,19 @@ agg \
 -prefix code,util
 ```
 
-Specify paths as relative paths from the current directory.
+パスはカレントディレクトリからの相対パスで指定します。
 
-- `-main` specifies the path to the main file.
 
-- `-import` specifies the paths of packages imported by the main file, packages imported within those packages, and so on.
+- `-main` Mainファイルのパスを指定
 
-- `-prefix` specifies the package names used.
+- `-import` Mainファイルでimportしているパッケージのパス、そのパッケージでimportしているパッケージのパス、...を指定
+
+- `-prefix` 使用しているパッケージ名を指定
 
 <br>
 
-In the example above, the directory structure is as follows.  
-The import relationship is that main.go imports the code package, and code/problem.go imports the util package.
-
+上例では、以下のようなディレクトリ構造になっています。  
+import関係は、main.goがcodeパッケージをimport, code/problem.goがutilパッケージをimportしています。
 ```bash
 test-dir
 │
@@ -73,13 +67,13 @@ test-dir
     └── util.go
 ```
 
+
+
 <br>
 
+## 🔥動作イメージ
 
-
-## 🔥Demo
-### Before Aggregation (3 Files)
-
+### 統合前 (３ファイル)
 ```go
 // chap1/main.go ------------------------------------------
 package main
@@ -169,9 +163,8 @@ func MultiMultiInt(maxBuffer int) [][]int {
 }
 ```
 
-### ⚡️After Aggregation
-Note: Imports are not automatically added, so please use your IDE's linting tool to include them!
-
+### ⚡️統合後
+<b>importは記述されないので、自身のIDEのlintなどでimportを追記して下さい!</b>
 ```go
 // chap1/main.go ------------------------------------------
 package main
@@ -237,13 +230,18 @@ func Problem() [][]int {
 }
 ```
 
-<br><br>
+
+
+<br>
+<br>
+
+## 前提条件
+
+- Go 1.16以降
 
 
 
-## Prerequisites
-Go 1.16 or later
+## ライセンス
 
-## License
-This project is licensed under the MIT License.  
-See the LICENSE file for details.
+このプロジェクトはMITライセンスの下でライセンスされています。  
+詳細は[LICENSE](LICENSE)ファイルを参照してください。
