@@ -1,6 +1,6 @@
 package code
 
-import "github.com/aggre-golang/test-dir/util"
+import "github.com/golang-import-aggregator-atcoder/test-dir/util"
 
 func SomeProblem() [][]int {
 	a := 10
