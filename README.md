@@ -1,11 +1,24 @@
-# golang-import-aggregator
+# 🔥golang-import-aggregator
+
+## 目次
+
+- [できること](#できること)
+- [インストール](#インストール)
+- [使い方](#🔥使い方)
+- [動作イメージ](#🔥動作イメージ)
+	- [統合前 (３ファイル)](#統合前-３ファイル)
+	- [統合後](#⚡️統合後)
+- [前提条件](#前提条件)
+- [ライセンス](#ライセンス)
+
+
 
 ## できること
 
 Mainファイルにおいてimportされた自作パッケージ群を、Mainファイルにひとまとめにできます。  
 特にAtCoderなどの競技プログラミングでGolangを使用する場合に役立ちます。
 
-コンソールに結果が出力され、指定のMainファイルへの上書きを選択できます。
+コンソールに結果が出力され、指定のMainファイルへ上書きするかを選択できます。
 
 
 
@@ -17,9 +30,9 @@ go install github.com/masa0902dev/golang-import-aggregator-atcoder
 
 <br>
 
-## 使い方
+## 🔥使い方
 
-importをmain.goにひとまとめにするには以下のように使用します。  
+importをMainファイルにひとまとめにするには以下のように使用します。  
 <b>ただし、importは記述されないので、自身のIDEのlintなどでimportを追記して下さい!</b>
 
 [使用例]
@@ -44,7 +57,8 @@ agg \
 上例では、以下のようなディレクトリ構造になっています。  
 import関係は、main.goがcodeパッケージをimport, code/problem.goがutilパッケージをimportしています。
 ```bash
-.
+test-dir
+│
 ├── chap1
 │   ├── code
 │   │   └── problem.go
@@ -55,9 +69,9 @@ import関係は、main.goがcodeパッケージをimport, code/problem.goがutil
 
 
 
-## 動作イメージ
-上例のコマンドを実行した場合の動作イメージは、以下の通りです。
+<br>
 
+## 🔥動作イメージ
 
 ### 統合前 (３ファイル)
 ```go
@@ -149,9 +163,10 @@ func MultiMultiInt(maxBuffer int) [][]int {
 }
 ```
 
-### 🔥統合後🔥
+### ⚡️統合後
 <b>importは記述されないので、自身のIDEのlintなどでimportを追記して下さい!</b>
 ```go
+// chap1/main.go ------------------------------------------
 package main
 
 
@@ -160,7 +175,7 @@ func main() {
 }
 
 func CreateInfMatrix(row int, col int) [][]int {
-	const inf = int(^uint(0) >> 1)	// maximum int value
+	const inf = int(^uint(0) >> 1)
 	matrix := make([][]int, row)
 	for i := range matrix {
 		matrix[i] = make([]int, col)
@@ -216,6 +231,8 @@ func Problem() [][]int {
 ```
 
 
+
+<br>
 <br>
 
 ## 前提条件
