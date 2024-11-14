@@ -6,17 +6,17 @@ import (
 	"os"
 	"strings"
 
-	"github.com/golang-import-aggregator-atcoder/pkg"
+	"github.com/masa0902dev/golang-import-aggregator-atcoder/pkg"
 )
 
 func main() {
 	mainPath := flag.String("main", "", "Main Go file path")
 	importPaths := flag.String("import", "", "Comma-separated list of import file paths")
-	prefixesToRemove := flag.String("prefixes", "", "Comma-separated list of prefixes to remove")
+	prefixesToRemove := flag.String("prefix", "", "Comma-separated list of prefixes to remove")
 	flag.Parse()
 
 	if *mainPath == "" || *importPaths == "" || *prefixesToRemove == "" {
-		fmt.Println("Usage: aggre -main <main file path> -import <comma-separated import paths> -prefixes <comma-separated prefixes>")
+		fmt.Println("Usage: aggre -main <main file path> -import <comma-separated import paths> -prefix <comma-separated prefixes>")
 		os.Exit(1)
 	}
 
