@@ -24,7 +24,7 @@ Mainファイルにおいてimportされた自作パッケージ群を、Mainフ
 
 ## インストール
 ```bash
-go install github.com/masa0902dev/golang-import-aggregator-atcoder
+go install github.com/masa0902dev/golang-import-aggregator-atcoder/cmd/agg
 ```
 
 

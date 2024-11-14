@@ -29,7 +29,7 @@ The result is output to the console, and you can choose to overwrite the specifi
 
 ## Installation
 ```bash
-go install github.com/masa0902dev/golang-import-aggregator-atcoder
+go install github.com/masa0902dev/golang-import-aggregator-atcoder/cmd/agg
 ```
 
 <br>
