@@ -7,7 +7,6 @@ import (
 	"strings"
 )
 
-// ユーザーに確認を促し、入力を取得
 func GetUserConfirmation(prompt string) bool {
 	fmt.Print(prompt)
 	scanner := bufio.NewScanner(os.Stdin)

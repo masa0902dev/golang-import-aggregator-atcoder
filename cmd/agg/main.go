@@ -20,21 +20,17 @@ func main() {
 		os.Exit(1)
 	}
 
-	// インポートファイルとプレフィックスをリスト化
 	importFiles := strings.Split(*importPaths, ",")
 	prefixes := strings.Split(*prefixesToRemove, ",")
 
-	// プレフィックス削除後のコードを取得
 	finalCode, err := pkg.AggregateAndProcessFiles(*mainPath, importFiles, prefixes)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
 
-	// 最終コードを出力
 	fmt.Println(finalCode)
 
-	// 上書き確認
 	if pkg.GetUserConfirmation("Do you want to overwrite the main file with this code? (y/n): ") {
 		if err := pkg.OverwriteFile(*mainPath, finalCode); err != nil {
 			fmt.Printf("Error writing to file: %v\n", err)
