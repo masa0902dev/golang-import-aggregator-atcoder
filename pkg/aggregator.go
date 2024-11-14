@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func ParseFileToASTString(filePath string, funcMap map[string]bool) (string, error) {
+func parseFileToASTString(filePath string, funcMap map[string]bool) (string, error) {
 	fset := token.NewFileSet()
 	file, err := parser.ParseFile(fset, filePath, nil, parser.ParseComments)
 	if err != nil {
@@ -35,7 +35,7 @@ func ParseFileToASTString(filePath string, funcMap map[string]bool) (string, err
 	return output.String(), nil
 }
 
-func RemoveUnwantedLines(code string, prefixes []string) string {
+func removeUnwantedLines(code string, prefixes []string) string {
 	code = regexp.MustCompile(`(?m)^package\s+\w+\s*$`).ReplaceAllString(code, "")
 	code = regexp.MustCompile(`(?m)^\s*import\s+\([\s\S]*?\)\s*$|^\s*import\s+"[\w./-]+".*?$`).ReplaceAllString(code, "")
 
@@ -52,21 +52,21 @@ func AggregateAndProcessFiles(mainFile string, importFiles []string, prefixes []
 	combinedCode := ""
 	funcMap := make(map[string]bool)
 
-	mainCode, err := ParseFileToASTString(mainFile, funcMap)
+	mainCode, err := parseFileToASTString(mainFile, funcMap)
 	if err != nil {
 		return "", err
 	}
 	combinedCode += mainCode + "\n"
 
 	for _, filePath := range importFiles {
-		importCode, err := ParseFileToASTString(filePath, funcMap)
+		importCode, err := parseFileToASTString(filePath, funcMap)
 		if err != nil {
 			return "", err
 		}
 		combinedCode += importCode + "\n"
 	}
 
-	finalCode := RemoveUnwantedLines(combinedCode, prefixes)
+	finalCode := removeUnwantedLines(combinedCode, prefixes)
 
 	return "package main\n\n" + finalCode, nil
 }
