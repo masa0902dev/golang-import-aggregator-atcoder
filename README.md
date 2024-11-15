@@ -1,9 +1,6 @@
 # 🔥golang-import-aggregator
 
-
-> [日本語READMEはこちら](https://github.com/masa0902dev/golang-import-aggregator-atcoder/blob/main/README-ja.md)
-
-
+> [日本語 README はこちら](https://github.com/masa0902dev/golang-import-aggregator-atcoder/blob/main/README-ja.md)
 
 ## Table of Contents
 
@@ -11,32 +8,28 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Demo](#demo)
-    - [Before Aggregation (3 Files)](#before-aggregation-3-files)
-    - [After Aggregation](#%EF%B8%8Fafter-aggregation)
+  - [Before Aggregation (3 Files)](#before-aggregation-3-files)
+  - [After Aggregation](#%EF%B8%8Fafter-aggregation)
 - [Prerequisites](#prerequisites)
 - [License](#license)
-
-
 
 ## Features
 
 This tool consolidates custom packages imported in a main file into a single main file.  
 It is especially useful when using Golang for competitive programming, such as on platforms like AtCoder.
 
-The result is output to the console, and you can choose to overwrite the specified main file.
-
-
+The result is output to the console, and you can choose to overwrite the specified main file (you can skip confirmation).
 
 ## Installation
+
 ```bash
 go install github.com/masa0902dev/golang-import-aggregator-atcoder/cmd/agg
 ```
 
 <br>
 
-
-
 ## 🔥Usage
+
 To consolidate imports into a main file, use the following command.  
 Note: Imports are not automatically added, so please use your IDE's linting tool to include them!
 
@@ -46,7 +39,8 @@ Note: Imports are not automatically added, so please use your IDE's linting tool
 agg \
 -main test-dir/chap1/main.go \
 -import test-dir/chap1/code/problem.go,test-dir/util/util.go \
--prefix code,util
+-prefix code,util \
+-skip
 ```
 
 Specify paths as relative paths from the current directory.
@@ -56,6 +50,8 @@ Specify paths as relative paths from the current directory.
 - `-import` specifies the paths of packages imported by the main file, packages imported within those packages, and so on.
 
 - `-prefix` specifies the package names used.
+
+- `-skip` if you add skip flag, you can paste the code to Main file without confirmation in terminal.
 
 <br>
 
@@ -75,9 +71,8 @@ test-dir
 
 <br>
 
-
-
 ## 🔥Demo
+
 ### Before Aggregation (3 Files)
 
 ```go
@@ -170,6 +165,7 @@ func MultiMultiInt(maxBuffer int) [][]int {
 ```
 
 ### ⚡️After Aggregation
+
 Note: Imports are not automatically added, so please use your IDE's linting tool to include them!
 
 ```go
@@ -239,11 +235,11 @@ func Problem() [][]int {
 
 <br><br>
 
-
-
 ## Prerequisites
+
 Go 1.16 or later
 
 ## License
+
 This project is licensed under the MIT License.  
 See the LICENSE file for details.

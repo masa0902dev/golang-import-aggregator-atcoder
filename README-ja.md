@@ -6,56 +6,56 @@
 - [インストール](#インストール)
 - [使い方](#使い方)
 - [動作イメージ](#動作イメージ)
-	- [統合前 (３ファイル)](#統合前-３ファイル)
-	- [統合後](#%EF%B8%8F統合後)
+  - [統合前 (３ファイル)](#統合前-３ファイル)
+  - [統合後](#%EF%B8%8F統合後)
 - [前提条件](#前提条件)
 - [ライセンス](#ライセンス)
 
-
-
 ## できること
 
-Mainファイルにおいてimportされた自作パッケージ群を、Mainファイルにひとまとめにできます。  
-特にAtCoderなどの競技プログラミングでGolangを使用する場合に役立ちます。
+Main ファイルにおいて import された自作パッケージ群を、Main ファイルにひとまとめにできます。  
+特に AtCoder などの競技プログラミングで Golang を使用する場合に役立ちます。
 
-コンソールに結果が出力され、指定のMainファイルへ上書きするかを選択できます。
-
-
+コンソールに結果が出力され、指定の Main ファイルへ上書きするかを選択できます(確認のスキップ可能)。
 
 ## インストール
+
 ```bash
 go install github.com/masa0902dev/golang-import-aggregator-atcoder/cmd/agg
 ```
 
-
 <br>
 
-## 🔥使い方
+## 🔥 使い方
 
-importをMainファイルにひとまとめにするには以下のように使用します。  
-<b>ただし、importは記述されないので、自身のIDEのlintなどでimportを追記して下さい!</b>
+import を Main ファイルにひとまとめにするには以下のように使用します。  
+<b>ただし、import は記述されないので、自身の IDE の lint などで import を追記して下さい!</b>
 
 [使用例]
+
 ```bash
 agg \
 -main test-dir/chap1/main.go \
 -import test-dir/chap1/code/problem.go,test-dir/util/util.go \
--prefix code,util
+-prefix code,util \
+-skip
 ```
 
 パスはカレントディレクトリからの相対パスで指定します。
 
+- `-main` Main ファイルのパスを指定
 
-- `-main` Mainファイルのパスを指定
-
-- `-import` Mainファイルでimportしているパッケージのパス、そのパッケージでimportしているパッケージのパス、...を指定
+- `-import` Main ファイルで import しているパッケージのパス、そのパッケージで import しているパッケージのパス、...を指定
 
 - `-prefix` 使用しているパッケージ名を指定
+
+- `-skip` skip フラッグをつけると、ターミナル上での確認無しで Main ファイルにコードをペーストできます
 
 <br>
 
 上例では、以下のようなディレクトリ構造になっています。  
-import関係は、main.goがcodeパッケージをimport, code/problem.goがutilパッケージをimportしています。
+import 関係は、main.go が code パッケージを import, code/problem.go が util パッケージを import しています。
+
 ```bash
 test-dir
 │
@@ -67,13 +67,12 @@ test-dir
     └── util.go
 ```
 
-
-
 <br>
 
-## 🔥動作イメージ
+## 🔥 動作イメージ
 
 ### 統合前 (３ファイル)
+
 ```go
 // chap1/main.go ------------------------------------------
 package main
@@ -163,8 +162,10 @@ func MultiMultiInt(maxBuffer int) [][]int {
 }
 ```
 
-### ⚡️統合後
-<b>importは記述されないので、自身のIDEのlintなどでimportを追記して下さい!</b>
+### ⚡️ 統合後
+
+<b>import は記述されないので、自身の IDE の lint などで import を追記して下さい!</b>
+
 ```go
 // chap1/main.go ------------------------------------------
 package main
@@ -230,18 +231,14 @@ func Problem() [][]int {
 }
 ```
 
-
-
 <br>
 <br>
 
 ## 前提条件
 
-- Go 1.16以降
-
-
+- Go 1.16 以降
 
 ## ライセンス
 
-このプロジェクトはMITライセンスの下でライセンスされています。  
+このプロジェクトは MIT ライセンスの下でライセンスされています。  
 詳細は[LICENSE](LICENSE)ファイルを参照してください。
